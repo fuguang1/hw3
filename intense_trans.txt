@@ -1,0 +1,15 @@
+function [out_m] = intense_trans(input_m,input_norm,maplen)
+for i = 1:maplen
+    for j = 1:256
+        if input_m(i) == input_norm(j)
+            out_m(i) = j-1;
+            break
+        end
+    end
+end
+if maplen ~= 256
+    for i = maplen+1:256
+        out_m(i) = 0;
+    end
+end
+

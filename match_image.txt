@@ -1,0 +1,19 @@
+function match_image(varargin)
+I_int = cell(1,nargin);
+J_int = cell(1,nargin);
+I_map = cell(1,nargin);
+transfer = cell(1,nargin-1);
+[I_int{1},I_map{1}] = imread(varargin{1});
+model = imhist(I_int{1});
+for j = 2:nargin
+    [I_int{j},I_map{j}] = imread(varargin{j});
+    transfer{j} = intense_trans(I_map{j},I_map{1},size(I_map{j},1));
+    for i = 1:numel(I_int{j})
+        I_int{j}(i) = transfer{j}(I_int{j}(i)+1);
+    end
+    J_int{j} = histeq(I_int{j},model);
+    subplot(2,nargin-1,j-1);imshow(I_int{j});title(varargin{j});
+    subplot(2,nargin-1,j+nargin-2);imshow(J_int{j});title([varargin{j},' match']);
+end
+
+

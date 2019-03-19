@@ -1,0 +1,6 @@
+clear all;
+clc;
+figure(1);
+dispart('elain.bmp');
+figure(2);
+dispart('woman.bmp');

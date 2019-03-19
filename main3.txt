@@ -1,0 +1,10 @@
+clear all;
+clc;
+figure(1);
+match_image('citywall.bmp','citywall1.bmp','citywall2.bmp');
+figure(2);
+match_image('elain.bmp','elain1.bmp','elain2.bmp','elain3.bmp');
+figure(3);
+match_image('lena.bmp','lena1.bmp','lena2.bmp','lena4.bmp');
+figure(4);
+match_image('woman.bmp','woman1.bmp','woman2.bmp');

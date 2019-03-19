@@ -1,0 +1,18 @@
+function hist_ori(varargin)
+I_int = cell(1,nargin);
+I_map = cell(1,nargin);
+transfer = cell(1,nargin-1);
+[I_int{1},I_map{1}] = imread(varargin{1});
+subplot(2,nargin,1);imshow(I_int{1});title(varargin{1});
+subplot(2,nargin,1+nargin);imhist(I_int{1});
+for j = 2:nargin
+    [I_int{j},I_map{j}] = imread(varargin{j});
+    transfer{j} = intense_trans(I_map{j},I_map{1},size(I_map{j},1));
+    for i = 1:numel(I_int{j})
+        I_int{j}(i) = transfer{j}(I_int{j}(i)+1);
+    end
+    subplot(2,nargin,j);imshow(I_int{j});title(varargin{j});
+    subplot(2,nargin,j+nargin);imhist(I_int{j});
+end
+
+

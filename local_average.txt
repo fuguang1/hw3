@@ -1,0 +1,23 @@
+clear all;
+clc;
+I_1 = imread('elain.bmp');
+I_2 = imread('lena.bmp');
+figure(1);
+subplot(2,2,1);imshow(I_1);title('origin');
+subplot(2,2,3);imshow(I_2);title('origin');
+for i = 1:506
+    for j = 1:506
+        temp(1:7,1:7) = I_1(i:i+6,j:j+6);
+        temp0 = histeq(temp);
+        I_1(i+3,j+3) = temp0(4,4);
+    end
+end
+for i = 1:506
+    for j = 1:506
+        temp(1:7,1:7) = I_2(i:i+6,j:j+6);
+        temp0 = histeq(temp);
+        I_2(i+3,j+3) = temp0(4,4);
+    end
+end
+subplot(2,2,2);imshow(I_1);title('local average');
+subplot(2,2,4);imshow(I_2);title('local average');
